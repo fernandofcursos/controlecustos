@@ -47,3 +47,31 @@ render();
 if (precisaAvisoBackup(store.get(), hoje)) {
   mostrarAviso("Faça um backup dos seus dados (Ajustes → Fazer backup).", "info");
 }
+
+// Modo offline e aviso de nova versão.
+if ("serviceWorker" in navigator) {
+  const oferecerAtualizacao = (worker) => {
+    const aviso = mostrarAviso("Nova versão disponível — Atualizar", "info", { fixo: true });
+    aviso.addEventListener("click", () => worker.postMessage("pular-espera"));
+  };
+  navigator.serviceWorker.register("sw.js").then((reg) => {
+    if (reg.waiting && navigator.serviceWorker.controller) oferecerAtualizacao(reg.waiting);
+    reg.addEventListener("updatefound", () => {
+      const novo = reg.installing;
+      novo?.addEventListener("statechange", () => {
+        if (novo.state === "installed" && navigator.serviceWorker.controller) oferecerAtualizacao(novo);
+      });
+    });
+  }).catch(() => {});
+  // Recarrega só quando uma versão nova assume (não na primeira instalação).
+  const jaTinhaVersao = !!navigator.serviceWorker.controller;
+  let recarregando = false;
+  navigator.serviceWorker.addEventListener("controllerchange", () => {
+    if (recarregando || !jaTinhaVersao) return;
+    recarregando = true;
+    location.reload();
+  });
+}
+
+// Pede ao navegador para não apagar os dados do app por falta de espaço.
+navigator.storage?.persist?.().catch(() => {});
