@@ -5,3 +5,4 @@ import "./calc.test.js";
 import "./validacao.test.js";
 import "./backup.test.js";
 import "./exemplo.test.js";
+import "./excel.test.js";

@@ -1,4 +1,5 @@
 // Executa os testes no jsc (JavaScriptCore do macOS): ./testar.sh
+import "./globais.js";
 import "./todos.js";
 import { run } from "./runner.js";
 

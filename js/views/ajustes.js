@@ -5,9 +5,7 @@ import { gerarExemplo, removerExemplos } from "../exemplo.js";
 import { criarDocumentoInicial } from "../defaults.js";
 import { hojeISO, anoDe, parseSaldo, centavosParaTexto, formatMoeda } from "../format.js";
 import { mostrarAviso, baixarArquivo } from "../ui.js";
-
-// Ganchos opcionais registrados por outros módulos (ex.: exportar Excel).
-export const extras = { exportarExcel: null };
+import { exportarExcel } from "../excel.js";
 
 export function render(container, { store, estado, render: rerender }) {
   const doc = store.get();
@@ -113,8 +111,11 @@ export function render(container, { store, estado, render: rerender }) {
   });
 
   $("[data-excel]").addEventListener("click", () => {
-    if (extras.exportarExcel) extras.exportarExcel(store.get(), ano);
-    else mostrarAviso("Exportação para Excel indisponível.", "erro");
+    if (typeof XLSX === "undefined") {
+      mostrarAviso("Exportação para Excel indisponível.", "erro");
+      return;
+    }
+    exportarExcel(store.get(), ano);
   });
 
   $("[data-apagar]").addEventListener("click", () => {
