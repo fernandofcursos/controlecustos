@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Testes — Controle de Custos</title>
+<style>
+  body { font-family: system-ui, sans-serif; margin: 16px; background: #fff; color: #222; }
+  .ok { color: #1a7f37; } .erro { color: #b42318; }
+  li { margin: 4px 0; }
+</style>
+</head>
+<body>
+<h1>Testes</h1>
+<p id="resultado">Rodando…</p>
+<ul id="falhas"></ul>
+<script type="module">
+  import "./tests/todos.js";
+  import { run } from "./tests/runner.js";
+  const r = run();
+  const el = document.getElementById("resultado");
+  el.textContent = `${r.passou} passaram, ${r.falhou} falharam`;
+  el.className = r.falhou ? "erro" : "ok";
+  const ul = document.getElementById("falhas");
+  for (const f of r.falhas) {
+    const li = document.createElement("li");
+    li.className = "erro";
+    li.textContent = `${f.nome} — ${f.erro}`;
+    ul.appendChild(li);
+  }
+</script>
+</body>
+</html>
