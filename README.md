@@ -22,39 +22,17 @@ Abra `http://localhost:8000` no Chrome. Abrir o `index.html` com dois cliques n�
 
 ## 2. Publicar no GitHub Pages (grátis)
 
-1. Crie uma conta em <https://github.com>, se ainda não tiver.
-2. Crie um repositório **público** chamado `controle-custos` (botão **New**). Não marque nenhuma opção de README.
-3. Envie os arquivos. No Terminal, dentro da pasta do projeto, troque `SEU-USUARIO` pelo seu usuário do GitHub:
+O passo a passo completo está em **[PUBLICAR.md](PUBLICAR.md)**: enviar ao GitHub (pelo GitHub Desktop ou pelo Terminal), deixar o repositório público, ativar o Pages e testar o endereço publicado.
 
-   ```bash
-   git remote add origin https://github.com/SEU-USUARIO/controle-custos.git
-   git push -u origin main
-   ```
+Endereço do app: **https://fernandofcursos.github.io/controlecustos/**
 
-   Se o seu branch se chamar `master`, rode antes `git branch -M main`.
-4. No GitHub, abra o repositório e vá em **Settings → Pages**. Em **Build and deployment**, escolha **Deploy from a branch**, depois **Branch: main** e pasta **/ (root)**, e clique em **Save**.
-5. Depois de 1 ou 2 minutos, o app estará em `https://SEU-USUARIO.github.io/controle-custos/`.
+## 3. QR Code e entrega aos alunos
 
-## 3. QR Code para os alunos
-
-1. Gere o QR Code do endereço publicado em qualquer gerador (por exemplo, o menu **Compartilhar → Criar código QR** do Chrome).
-2. Salve a imagem como `icons/qrcode.png`.
-3. Publique de novo (passo 4 abaixo).
-
-A página `instalar.html` mostra o QR Code e as instruções de instalação. Projete essa página em aula ou imprima.
+Veja os [Passos 5 e 6 do PUBLICAR.md](PUBLICAR.md#passo-5--gerar-o-qr-code). Para os alunos, envie o **[GUIA-DO-ALUNO.md](GUIA-DO-ALUNO.md)**: instalação, lançamentos, resumo, backup e Excel.
 
 ## 4. Publicar uma atualização
 
-1. Faça as alterações nos arquivos.
-2. Em `sw.js`, aumente a versão: `const VERSAO = "cc-v1";` passa a `"cc-v2"`, depois `"cc-v3"`, e assim por diante. **Sem isso, os alunos continuam com a versão antiga guardada no aparelho.**
-3. Se criou um arquivo novo, inclua o nome dele na lista `ARQUIVOS` do `sw.js`. O `./testar.sh` avisa se faltar algum.
-4. Rode `./testar.sh` e depois:
-
-   ```bash
-   git add -A && git commit -m "Atualização" && git push
-   ```
-
-Quando o aluno abrir o app, aparece **"Nova versão disponível — Atualizar"**. Ao tocar no aviso, o app recarrega. Os dados dele não são apagados.
+Veja o [Passo 7 do PUBLICAR.md](PUBLICAR.md#passo-7--publicar-uma-atualização-do-app). Em resumo: edite os arquivos, aumente a `VERSAO` no `sw.js`, rode `./testar.sh` e faça commit e push.
 
 ## 5. Roteiro de testes antes de distribuir
 
@@ -68,6 +46,9 @@ Quando o aluno abrir o app, aparece **"Nova versão disponível — Atualizar"**
 - [ ] **Exportar para Excel** e abrir o arquivo no Excel: 14 abas (Resumo, Categorias, Jan a Dez).
 
 ## 6. Orientações para os alunos
+
+O guia completo para os alunos é o [GUIA-DO-ALUNO.md](GUIA-DO-ALUNO.md). O essencial:
+
 
 - Os dados ficam **só no seu aparelho**. Se você limpar os dados do navegador ou trocar de celular, perde tudo, a menos que tenha um backup. Faça backup com frequência (Ajustes → Fazer backup) e guarde o arquivo no Drive, no e-mail ou no WhatsApp.
 - No iPhone, abra sempre pelo ícone da tela de início. Assim o sistema mantém seus dados.
@@ -87,4 +68,5 @@ Quando o aluno abrir o app, aparece **"Nova versão disponível — Atualizar"**
 | `sw.js`, `manifest.webmanifest`, `icons/` | Instalação e funcionamento offline |
 | `vendor/` | Chart.js 4.4.1 (gráficos) e SheetJS 0.18.5 (Excel), guardados no projeto para funcionar offline |
 | `tests/`, `testes.html`, `testar.sh` | Testes automáticos |
+| `PUBLICAR.md`, `GUIA-DO-ALUNO.md` | Passo a passo de publicação (professor) e guia de uso (alunos) |
 | `docs/superpowers/` | Especificação e plano de implementação |
