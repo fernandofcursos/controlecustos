@@ -6,3 +6,4 @@ import "./validacao.test.js";
 import "./backup.test.js";
 import "./exemplo.test.js";
 import "./excel.test.js";
+import "./equivalencia.test.js";
