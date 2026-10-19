@@ -178,3 +178,24 @@ button, input, select { font: inherit; color: inherit; }
   .form { max-width: 520px; }
   .acoes { flex-direction: row; }
 }
+
+/* Resumo */
+.cartoes > .cartao:last-child:nth-child(odd) { grid-column: 1 / -1; }
+.grafico { position: relative; height: 240px; background: var(--superficie); border: 1px solid var(--borda); border-radius: var(--raio); padding: 8px; }
+.barra-item { padding: 10px 12px; }
+.barra-linha { display: flex; justify-content: space-between; gap: 12px; font-size: .9rem; }
+.barra-linha span:last-child { white-space: nowrap; color: var(--texto-2); }
+.barra { height: 6px; background: var(--superficie-2); border-radius: 3px; margin-top: 6px; overflow: hidden; }
+.barra > div { height: 100%; background: var(--primaria); }
+.tabela-rolagem { overflow-x: auto; background: var(--superficie); border: 1px solid var(--borda); border-radius: var(--raio); }
+.tabela { width: 100%; border-collapse: collapse; font-size: .88rem; }
+.tabela th, .tabela td { padding: 8px 10px; text-align: right; white-space: nowrap; border-bottom: 1px solid var(--borda); }
+.tabela th:first-child, .tabela td:first-child { text-align: left; }
+.tabela thead th { color: var(--texto-2); font-weight: 600; }
+.tabela tfoot th { border-bottom: 0; }
+@media (min-width: 900px) {
+  .cartoes > .cartao:last-child:nth-child(odd) { grid-column: auto; }
+  .cartoes:has(> .cartao:nth-child(5)) { grid-template-columns: repeat(5, 1fr); }
+  .grafico { height: 300px; }
+  .resumo-colunas { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+}

@@ -4,8 +4,9 @@ import { hojeISO, anoDe, mesDe } from "./format.js";
 import { mostrarAviso } from "./ui.js";
 import * as mes from "./views/mes.js";
 import * as lancamento from "./views/lancamento.js";
+import * as resumo from "./views/resumo.js";
 
-const VIEWS = { mes, lancamento };
+const VIEWS = { mes, lancamento, resumo };
 
 const store = createStore();
 const hoje = hojeISO();
