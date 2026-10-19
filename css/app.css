@@ -199,3 +199,23 @@ button, input, select { font: inherit; color: inherit; }
   .grafico { height: 300px; }
   .resumo-colunas { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 }
+
+/* Categorias e Ajustes */
+.segmentado .botao.selecionado { background: var(--primaria-suave); border-color: var(--primaria); color: var(--primaria); font-weight: 600; }
+.categorias { margin-top: 12px; }
+.categoria { display: flex; flex-direction: column; gap: 8px; padding: 10px 12px; }
+.categoria.inativa .categoria-nome span:first-child { color: var(--texto-2); text-decoration: line-through; }
+.categoria-nome { display: flex; justify-content: space-between; gap: 8px; }
+.categoria-acoes { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.categoria-acoes select { padding: 6px 8px; border: 1px solid var(--borda); border-radius: var(--raio); background: var(--superficie); min-height: 36px; }
+.botao-pequeno { padding: 6px 10px; min-height: 36px; font-size: .85rem; }
+.dica { color: var(--texto-2); font-size: .88rem; margin: 4px 0 0; }
+.linha-campo { display: flex; gap: 8px; }
+.linha-campo input { flex: 1; }
+.form h2 { margin-bottom: 0; }
+label.botao { display: inline-flex; align-items: center; justify-content: center; }
+@media (min-width: 900px) {
+  .categoria { flex-direction: row; align-items: center; justify-content: space-between; }
+  .categorias, .categorias + .dica { max-width: 760px; }
+  .segmentado:has(> .botao) { max-width: 320px; }
+}

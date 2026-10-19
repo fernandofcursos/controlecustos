@@ -1,6 +1,6 @@
 import { test, assertEqual, assertDeepEqual } from "./runner.js";
 import { criarDocumentoInicial } from "../js/defaults.js";
-import { validarLancamento } from "../js/validacao.js";
+import { validarLancamento, erroNomeCategoria } from "../js/validacao.js";
 
 const d = criarDocumentoInicial();
 
@@ -28,4 +28,12 @@ test("validarLancamento: data e categoria vazias", () => {
 test("validarLancamento aceita 29/02 em ano bissexto", () => {
   assertEqual(validarLancamento({ tipo: "receita", valorTexto: "10", data: "2028-02-29", categoriaId: "r_servicos_prestados", descricao: "" }, d).ok, true);
   assertEqual(validarLancamento({ tipo: "receita", valorTexto: "10", data: "2026-13-01", categoriaId: "r_servicos_prestados", descricao: "" }, d).ok, false);
+});
+
+test("erroNomeCategoria: vazio, duplicado no mesmo tipo e ok", () => {
+  assertEqual(erroNomeCategoria(d, "custo", "  "), "Informe um nome");
+  assertEqual(erroNomeCategoria(d, "custo", " aluguel "), "Já existe uma categoria com esse nome");
+  assertEqual(erroNomeCategoria(d, "receita", "Aluguel"), null);
+  assertEqual(erroNomeCategoria(d, "custo", "Aluguel", "c_aluguel"), null);
+  assertEqual(erroNomeCategoria(d, "custo", "x".repeat(41)), "Máximo de 40 caracteres");
 });

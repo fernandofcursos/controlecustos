@@ -1,5 +1,5 @@
 import { test, assertEqual } from "./runner.js";
-import { parseReais, formatMoeda, formatData, hojeISO, anoDe, mesDe, centavosParaTexto } from "../js/format.js";
+import { parseReais, formatMoeda, formatData, hojeISO, anoDe, mesDe, centavosParaTexto, parseSaldo } from "../js/format.js";
 
 test("parseReais aceita formatos pt-BR", () => {
   assertEqual(parseReais("1.234,56"), 123456);
@@ -31,4 +31,13 @@ test("centavosParaTexto para preencher o formulário", () => {
   assertEqual(centavosParaTexto(123456), "1234,56");
   assertEqual(centavosParaTexto(5), "0,05");
   assertEqual(parseReais(centavosParaTexto(18000)), 18000);
+});
+
+test("parseSaldo aceita zero, negativo e vazio", () => {
+  assertEqual(parseSaldo(""), 0);
+  assertEqual(parseSaldo("0"), 0);
+  assertEqual(parseSaldo("-1.500,50"), -150050);
+  assertEqual(parseSaldo("R$ 200"), 20000);
+  assertEqual(parseSaldo("abc"), null);
+  assertEqual(parseSaldo("--5"), null);
 });

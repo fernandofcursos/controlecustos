@@ -8,8 +8,8 @@ export function esc(texto) {
   return String(texto).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
 }
 
-// Faixa de aviso no topo da tela; some ao tocar. Retorna o elemento para quem quiser tratar o clique.
-export function mostrarAviso(texto, tipo = "info") {
+// Faixa de aviso no topo da tela; some ao tocar ou sozinha (exceto se fixo). Retorna o elemento.
+export function mostrarAviso(texto, tipo = "info", { fixo = false } = {}) {
   const area = document.getElementById("avisos");
   const el = document.createElement("button");
   el.type = "button";
@@ -17,7 +17,7 @@ export function mostrarAviso(texto, tipo = "info") {
   el.textContent = texto;
   el.addEventListener("click", () => el.remove());
   area.appendChild(el);
-  if (tipo === "info") setTimeout(() => el.remove(), 6000);
+  if (!fixo) setTimeout(() => el.remove(), tipo === "erro" ? 10000 : 5000);
   return el;
 }
 

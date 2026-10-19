@@ -19,3 +19,12 @@ export function validarLancamento({ tipo, valorTexto, data, categoriaId, descric
   if (Object.keys(erros).length) return { ok: false, erros };
   return { ok: true, lancamento: { tipo, data, categoriaId, descricao: texto, valor } };
 }
+
+// Nome de categoria: obrigatório, até 40 caracteres, sem repetir dentro do mesmo tipo.
+export function erroNomeCategoria(doc, tipo, nome, ignorarId = null) {
+  const limpo = nome.trim();
+  if (!limpo) return "Informe um nome";
+  if (limpo.length > 40) return "Máximo de 40 caracteres";
+  const repetido = doc.categorias.some((c) => c.tipo === tipo && c.id !== ignorarId && c.nome.toLowerCase() === limpo.toLowerCase());
+  return repetido ? "Já existe uma categoria com esse nome" : null;
+}

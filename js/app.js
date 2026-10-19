@@ -5,8 +5,11 @@ import { mostrarAviso } from "./ui.js";
 import * as mes from "./views/mes.js";
 import * as lancamento from "./views/lancamento.js";
 import * as resumo from "./views/resumo.js";
+import * as categorias from "./views/categorias.js";
+import * as ajustes from "./views/ajustes.js";
+import { precisaAvisoBackup } from "./backup.js";
 
-const VIEWS = { mes, lancamento, resumo };
+const VIEWS = { mes, lancamento, resumo, categorias, ajustes };
 
 const store = createStore();
 const hoje = hojeISO();
@@ -33,10 +36,14 @@ let avisouFalha = false;
 store.subscribe((_doc, salvou) => {
   if (!salvou && !avisouFalha) {
     avisouFalha = true;
-    mostrarAviso("Não foi possível salvar neste navegador. Faça um backup.", "erro");
+    mostrarAviso("Não foi possível salvar neste navegador. Faça um backup.", "erro", { fixo: true });
   }
   render();
 });
 
 window.addEventListener("hashchange", () => { render(); window.scrollTo(0, 0); });
 render();
+
+if (precisaAvisoBackup(store.get(), hoje)) {
+  mostrarAviso("Faça um backup dos seus dados (Ajustes → Fazer backup).", "info");
+}

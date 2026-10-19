@@ -45,3 +45,13 @@ export function mesDe(iso) {
 export function centavosParaTexto(centavos) {
   return (centavos / 100).toFixed(2).replace(".", ",");
 }
+
+// Saldo de abertura: aceita zero e negativo (dívida); vazio vale 0; inválido -> null.
+export function parseSaldo(texto) {
+  const t = String(texto ?? "").replace(/R\$/gi, "").replace(/\s/g, "");
+  if (t === "" || /^0+([.,]0*)?$/.test(t)) return 0;
+  const negativo = t.startsWith("-");
+  const centavos = parseReais(negativo ? t.slice(1) : t);
+  if (centavos === null) return null;
+  return negativo ? -centavos : centavos;
+}
