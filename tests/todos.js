@@ -4,3 +4,4 @@ import "./store.test.js";
 import "./calc.test.js";
 import "./validacao.test.js";
 import "./backup.test.js";
+import "./exemplo.test.js";
