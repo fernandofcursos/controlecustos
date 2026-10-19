@@ -40,3 +40,8 @@ export function anoDe(iso) {
 export function mesDe(iso) {
   return Number(iso.split("-")[1]);
 }
+
+// 123456 -> "1234,56" (para preencher o campo Valor ao editar)
+export function centavosParaTexto(centavos) {
+  return (centavos / 100).toFixed(2).replace(".", ",");
+}

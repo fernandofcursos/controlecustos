@@ -1,5 +1,5 @@
 import { test, assertEqual } from "./runner.js";
-import { parseReais, formatMoeda, formatData, hojeISO, anoDe, mesDe } from "../js/format.js";
+import { parseReais, formatMoeda, formatData, hojeISO, anoDe, mesDe, centavosParaTexto } from "../js/format.js";
 
 test("parseReais aceita formatos pt-BR", () => {
   assertEqual(parseReais("1.234,56"), 123456);
@@ -25,4 +25,10 @@ test("datas sem fuso", () => {
   assertEqual(anoDe("2027-01-05"), 2027);
   assertEqual(formatData("2026-03-01"), "01/03/2026");
   assertEqual(hojeISO(new Date(2026, 2, 1, 23, 30)), "2026-03-01");
+});
+
+test("centavosParaTexto para preencher o formulário", () => {
+  assertEqual(centavosParaTexto(123456), "1234,56");
+  assertEqual(centavosParaTexto(5), "0,05");
+  assertEqual(parseReais(centavosParaTexto(18000)), 18000);
 });
