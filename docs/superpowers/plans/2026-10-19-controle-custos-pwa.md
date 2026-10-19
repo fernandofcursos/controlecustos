@@ -95,7 +95,7 @@ Expected: erro de import ou `0 passaram, 4 falharam`.
 
 - [ ] **Step 4: Implementar o `js/format.js`**
 
-- `parseReais`: remove `R$` e espaços. Rejeita sinal `-`. Se houver vírgula, os pontos são separadores de milhar e a vírgula é o decimal; sem vírgula, o ponto é o decimal. Exige o padrão `^\d+(\.\d{1,})?$` depois de normalizar, aplica `Math.round(valor * 100)` e devolve `null` se o resultado for ≤ 0.
+- `parseReais`: remove `R$` e espaços. Rejeita sinal `-`. Se houver vírgula, os pontos são separadores de milhar e a vírgula é o decimal. Sem vírgula, o ponto é o decimal, exceto no padrão `^\d{1,3}(\.\d{3})+$` ("1.500", "10.000"), em que os pontos são separadores de milhar (correção da revisão final). Exige o padrão `^\d+(\.\d{1,})?$` depois de normalizar, aplica `Math.round(valor * 100)` e devolve `null` se o resultado for ≤ 0.
 - `formatMoeda`: usa `Intl.NumberFormat("pt-BR", {style:"currency", currency:"BRL"})` e troca o espaço não separável por um espaço normal, para que a saída seja exatamente `"R$ 1.234,56"`. O sinal negativo vai antes, `"-R$ 180,00"`.
 - `anoDe` e `mesDe`: saem só da string (`split("-")`), sem `Date`.
 
