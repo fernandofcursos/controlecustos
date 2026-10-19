@@ -1,4 +1,4 @@
-import { test, assert, assertEqual, assertThrows } from "./runner.js";
+import { test, assert, assertEqual, assertDeepEqual, assertThrows } from "./runner.js";
 import { CATEGORIAS_PADRAO, SERVICOS_REFERENCIA, criarDocumentoInicial } from "../js/defaults.js";
 import { createStore, novoId } from "../js/store.js";
 
@@ -107,4 +107,37 @@ test("subscribe é chamado após mutação e pode cancelar", () => {
 test("novoId gera ids distintos com prefixo", () => {
   const a = novoId("x"), b = novoId("x");
   assert(a.startsWith("x_") && a !== b);
+});
+
+test("localStorage cujo acesso lança erro não derruba o app", () => {
+  const original = Object.getOwnPropertyDescriptor(globalThis, "localStorage");
+  Object.defineProperty(globalThis, "localStorage", { configurable: true, get() { throw new Error("SecurityError"); } });
+  try {
+    const s = createStore();
+    assertEqual(s.get().versao, 1);
+    assertEqual(s.save(), false);
+  } finally {
+    if (original) Object.defineProperty(globalThis, "localStorage", original);
+    else delete globalThis.localStorage;
+  }
+});
+
+test("duas cópias abertas não apagam os lançamentos uma da outra", () => {
+  const mem = fakeStorage();
+  const a = createStore(mem), b = createStore(mem);
+  a.addLancamento({ ...lanc, descricao: "da aba A" });
+  b.addLancamento({ ...lanc, descricao: "da aba B" });
+  const salvos = createStore(mem).get().lancamentos.map((l) => l.descricao).sort();
+  assertDeepEqual(salvos, ["da aba A", "da aba B"]);
+});
+
+test("recarregar() lê de novo o armazenamento e avisa os assinantes", () => {
+  const mem = fakeStorage();
+  const a = createStore(mem), b = createStore(mem);
+  let avisos = 0;
+  b.subscribe(() => avisos++);
+  a.addLancamento(lanc);
+  b.recarregar();
+  assertEqual(b.get().lancamentos.length, 1);
+  assertEqual(avisos, 1);
 });

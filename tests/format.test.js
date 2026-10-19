@@ -41,3 +41,12 @@ test("parseSaldo aceita zero, negativo e vazio", () => {
   assertEqual(parseSaldo("abc"), null);
   assertEqual(parseSaldo("--5"), null);
 });
+
+test("parseReais: ponto como separador de milhar sem vírgula", () => {
+  assertEqual(parseReais("1.500"), 150000);
+  assertEqual(parseReais("10.000"), 1000000);
+  assertEqual(parseReais("1.234.567"), 123456700);
+  assertEqual(parseReais("1234.56"), 123456);
+  assertEqual(parseReais("1.5"), 150);
+  assertEqual(parseReais("1.50"), 150);
+});

@@ -10,6 +10,8 @@ export function parseReais(texto) {
   if (t.includes(",")) {
     if (t.split(",").length > 2) return null;
     t = t.replace(/\./g, "").replace(",", ".");
+  } else if (/^\d{1,3}(\.\d{3})+$/.test(t)) {
+    t = t.replace(/\./g, ""); // "1.500" em pt-BR é mil e quinhentos
   }
   if (!/^\d+(\.\d+)?$/.test(t)) return null;
   const centavos = Math.round(Number(t) * 100);

@@ -42,6 +42,8 @@ store.subscribe((_doc, salvou) => {
 });
 
 window.addEventListener("hashchange", () => { render(); window.scrollTo(0, 0); });
+// Outra janela/aba do app salvou: recarrega os dados para as duas mostrarem o mesmo.
+window.addEventListener("storage", (ev) => { if (ev.key === "controleCustos.v1") store.recarregar(); });
 render();
 
 if (precisaAvisoBackup(store.get(), hoje)) {
