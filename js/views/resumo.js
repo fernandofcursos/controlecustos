@@ -65,6 +65,7 @@ export function render(container, { store, estado, render: rerender }) {
       <h1>Resumo ${ano}</h1>
       <button type="button" class="botao-icone" data-ano="1" aria-label="Próximo ano">›</button>
     </div>
+    <p class="acao-relatorio"><a class="botao" href="#relatorio" data-relatorio>Relatório para imprimir</a></p>
     <div class="cartoes">
       ${cartao("Total de receitas do ano", formatMoeda(r.totalReceitas))}
       ${cartao("Total de despesas do ano", formatMoeda(r.totalDespesas))}
@@ -94,4 +95,8 @@ export function render(container, { store, estado, render: rerender }) {
   for (const b of container.querySelectorAll("[data-ano]")) {
     b.addEventListener("click", () => { estado.ano += Number(b.dataset.ano); rerender(); });
   }
+  // O relatório abre no mesmo ano que está aparecendo no Resumo.
+  container.querySelector("[data-relatorio]").addEventListener("click", () => {
+    if (estado.relatorio) estado.relatorio.ano = estado.ano;
+  });
 }

@@ -1,6 +1,6 @@
 // Service worker: guarda o app no aparelho para funcionar offline.
 // Ao publicar uma nova versão, aumente VERSAO (cc-v2, cc-v3…) para os alunos receberem o aviso de atualização.
-const VERSAO = "cc-v1";
+const VERSAO = "cc-v2";
 
 const ARQUIVOS = [
   "./",
@@ -15,6 +15,7 @@ const ARQUIVOS = [
   "js/excel.js",
   "js/exemplo.js",
   "js/format.js",
+  "js/relatorio.js",
   "js/store.js",
   "js/ui.js",
   "js/validacao.js",
@@ -22,6 +23,7 @@ const ARQUIVOS = [
   "js/views/categorias.js",
   "js/views/lancamento.js",
   "js/views/mes.js",
+  "js/views/relatorio.js",
   "js/views/resumo.js",
   "vendor/chart.umd.min.js",
   "vendor/xlsx.full.min.js",

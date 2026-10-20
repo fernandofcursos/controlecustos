@@ -118,7 +118,22 @@ O app mostra um aviso quando você passa **mais de 30 dias** sem fazer backup.
 
 ---
 
-## 8. Dúvidas comuns
+## 8. Imprimir ou salvar em PDF
+
+1. Toque em **Resumo** e depois em **Relatório para imprimir**.
+2. Escolha o **Ano**, o **Mês inicial** e o **Mês final** (por exemplo, Março a Junho) e quais **Lançamentos** entram: **Todos**, **Só receitas** ou **Só custos**.
+3. Confira a prévia logo abaixo:
+   - os lançamentos de cada mês, com subtotal;
+   - no fim, o **Resumo do período**: saldo no início, receitas, custos, resultado e saldo no fim.
+4. Toque em **Imprimir / Salvar PDF**.
+   - **Computador e Android:** na janela de impressão, escolha a impressora ou **Salvar como PDF**.
+   - **iPhone:** na janela que abrir, toque em **Compartilhar** (ou faça o gesto de "pinça" na prévia) e salve ou envie o PDF.
+
+Os valores aparecem no padrão brasileiro, por exemplo **R$ 12.345,67**.
+
+---
+
+## 9. Dúvidas comuns
 
 | Situação | O que fazer |
 |---|---|

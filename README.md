@@ -43,6 +43,7 @@ Veja o [Passo 7 do PUBLICAR.md](PUBLICAR.md#passo-7--publicar-uma-atualização-
 - [ ] Ativar o **modo avião** e abrir o app: ele funciona normalmente.
 - [ ] Em Ajustes, **Fazer backup**, enviar o arquivo para outro aparelho, abrir o app nele e usar **Restaurar backup**: os dados aparecem.
 - [ ] Publicar uma versão nova (passo 4) e conferir o aviso de atualização, sem perda de dados.
+- [ ] **Resumo → Relatório para imprimir**: escolher março a junho, só custos, e salvar como PDF; conferir os valores em R$.
 - [ ] **Exportar para Excel** e abrir o arquivo no Excel: 14 abas (Resumo, Categorias, Jan a Dez).
 
 ## 6. Orientações para os alunos
@@ -63,7 +64,7 @@ O guia completo para os alunos é o [GUIA-DO-ALUNO.md](GUIA-DO-ALUNO.md). O esse
 | `js/store.js` | Única porta para o armazenamento do navegador (`localStorage`, chave `controleCustos.v1`) |
 | `js/calc.js` | Cálculos, equivalentes às fórmulas da planilha |
 | `js/format.js` | Moeda (R$), datas, conversão para centavos |
-| `js/validacao.js`, `js/backup.js`, `js/exemplo.js`, `js/excel.js` | Validação, backup, dados de exemplo, exportação para Excel |
+| `js/validacao.js`, `js/backup.js`, `js/exemplo.js`, `js/excel.js`, `js/relatorio.js` | Validação, backup, dados de exemplo, exportação para Excel, relatório para imprimir/PDF |
 | `js/views/*.js` | Telas |
 | `sw.js`, `manifest.webmanifest`, `icons/` | Instalação e funcionamento offline |
 | `vendor/` | Chart.js 4.4.1 (gráficos) e SheetJS 0.18.5 (Excel), guardados no projeto para funcionar offline |

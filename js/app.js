@@ -7,9 +7,10 @@ import * as lancamento from "./views/lancamento.js";
 import * as resumo from "./views/resumo.js";
 import * as categorias from "./views/categorias.js";
 import * as ajustes from "./views/ajustes.js";
+import * as relatorio from "./views/relatorio.js";
 import { precisaAvisoBackup } from "./backup.js";
 
-const VIEWS = { mes, lancamento, resumo, categorias, ajustes };
+const VIEWS = { mes, lancamento, resumo, categorias, ajustes, relatorio };
 
 const store = createStore();
 const hoje = hojeISO();
@@ -24,11 +25,12 @@ function rotaAtual() {
 
 function render() {
   const rota = rotaAtual();
+  const aba = rota.nome === "relatorio" ? "resumo" : rota.nome;
   for (const a of document.querySelectorAll(".nav a")) {
-    a.classList.toggle("ativo", a.dataset.rota === rota.nome);
-    if (a.dataset.rota === rota.nome) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current");
+    a.classList.toggle("ativo", a.dataset.rota === aba);
+    if (a.dataset.rota === aba) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current");
   }
-  fab.classList.toggle("oculto", rota.nome === "lancamento");
+  fab.classList.toggle("oculto", rota.nome === "lancamento" || rota.nome === "relatorio");
   VIEWS[rota.nome].render(tela, { store, estado, rota, render });
 }
 
