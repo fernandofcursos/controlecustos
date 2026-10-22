@@ -3,7 +3,7 @@
 App instalável (PWA) feito a partir da planilha **CONTROLE DE CUSTOS - CEP ETSM.xlsx**.
 É distribuído por link ou QR Code, sem loja de aplicativos, e funciona sem internet. Os dados de cada aluno ficam só no aparelho dele.
 
-Centro de Educação Profissional de Santa Maria — Curso de Administração.
+Gestão Empresarial · CEP Escola Técnica de Santa Maria.
 
 ---
 

@@ -1,6 +1,6 @@
 // Service worker: guarda o app no aparelho para funcionar offline.
 // Ao publicar uma nova versão, aumente VERSAO (cc-v2, cc-v3…) para os alunos receberem o aviso de atualização.
-const VERSAO = "cc-v2";
+const VERSAO = "cc-v3";
 
 const ARQUIVOS = [
   "./",
@@ -28,9 +28,12 @@ const ARQUIVOS = [
   "vendor/chart.umd.min.js",
   "vendor/xlsx.full.min.js",
   "icons/apple-touch-icon.png",
+  "icons/banner.jpg",
   "icons/icon-192.png",
   "icons/icon-512.png",
   "icons/icon-maskable-512.png",
+  "icons/logo-escola.png",
+  "icons/logo-gdf.png",
 ];
 
 self.addEventListener("install", (ev) => {

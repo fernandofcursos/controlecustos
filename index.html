@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Controle de Custos</title>
-<meta name="description" content="Controle mensal de receitas e despesas — CEP Santa Maria">
-<meta name="theme-color" content="#1f5fa5">
+<meta name="description" content="Controle mensal de receitas e despesas — Gestão Empresarial · CEP Escola Técnica de Santa Maria">
+<meta name="theme-color" content="#1c3b69">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Custos">
 <link rel="manifest" href="manifest.webmanifest">
@@ -14,6 +14,23 @@
 <link rel="stylesheet" href="css/app.css">
 </head>
 <body>
+<div id="abertura" class="abertura" role="img" aria-label="Controle de Custos — exercício 2026 — Gestão Empresarial, CEP Escola Técnica de Santa Maria">
+  <img src="icons/banner.jpg" alt="">
+</div>
+<script>
+  // Tela de abertura: some depois de 2 segundos ou com um toque.
+  (function () {
+    var a = document.getElementById("abertura");
+    function fechar() {
+      if (!a) return;
+      var el = a; a = null;
+      el.classList.add("saindo");
+      setTimeout(function () { el.remove(); }, 400);
+    }
+    a.addEventListener("click", fechar);
+    setTimeout(fechar, 2000);
+  })();
+</script>
 <div class="app">
   <nav class="nav" aria-label="Navegação principal">
     <div class="nav-marca">Controle de Custos</div>
@@ -23,9 +40,14 @@
     <a href="#ajustes" data-rota="ajustes"><span class="ico" aria-hidden="true">⚙</span><span>Ajustes</span></a>
   </nav>
   <div class="conteudo">
+    <header class="topo">
+      <img src="icons/logo-gdf.png" alt="Brasão do Governo do Distrito Federal" class="topo-logo">
+      <img src="icons/logo-escola.png" alt="Logo do CEP Escola Técnica de Santa Maria" class="topo-logo">
+      <div class="topo-texto"><strong>Controle de Custos</strong><span>Gestão Empresarial · CEP Escola Técnica de Santa Maria</span></div>
+    </header>
     <div id="avisos" class="avisos" aria-live="polite"></div>
     <main id="tela"></main>
-    <footer class="rodape">Centro de Educação Profissional de Santa Maria — Curso de Administração</footer>
+    <footer class="rodape">Gestão Empresarial · CEP Escola Técnica de Santa Maria</footer>
   </div>
   <a href="#lancamento" class="fab" aria-label="Novo lançamento">+</a>
 </div>

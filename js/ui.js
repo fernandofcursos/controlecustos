@@ -1,6 +1,9 @@
 // Utilidades de interface compartilhadas pelas telas.
 
 export const NOMES_MESES = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
+// Crédito institucional exibido no app, no relatório e no Excel.
+export const CREDITO = "Gestão Empresarial · CEP Escola Técnica de Santa Maria";
+
 export const MESES_CURTOS = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"];
 
 // Escapa texto digitado pelo aluno antes de inserir no HTML.

@@ -1,9 +1,8 @@
 // Exporta um ano no mesmo formato da planilha original (Resumo, Categorias, Jan–Dez). Usa a global XLSX (SheetJS).
 import { resumoAno, resumoMes, porCategoria, lancamentosDoMes } from "./calc.js";
 import { formatData } from "./format.js";
-import { NOMES_MESES, MESES_CURTOS } from "./ui.js";
+import { NOMES_MESES, MESES_CURTOS, CREDITO } from "./ui.js";
 
-const CREDITO = "Centro de Educação Profissional de Santa Maria — Curso de Administração";
 const reais = (centavos) => centavos / 100;
 
 // Aplica formato de moeda a todas as células numéricas (e % às indicadas).

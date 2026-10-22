@@ -2,7 +2,7 @@
 import { montarRelatorio } from "../relatorio.js";
 import { anosDisponiveis } from "../calc.js";
 import { formatMoeda, formatData, hojeISO, anoDe } from "../format.js";
-import { esc, NOMES_MESES } from "../ui.js";
+import { esc, NOMES_MESES, CREDITO } from "../ui.js";
 
 const TIPOS = [["todos", "Todos"], ["receita", "Só receitas"], ["custo", "Só custos"]];
 const NOME_TIPO = { receita: "Receita", custo: "Custo" };
@@ -83,9 +83,15 @@ export function render(container, { store, estado, render: rerender }) {
     </div>
     ${r.ok ? `<article class="relatorio">
       <header class="rel-cabecalho">
-        <h2>${r.titulo}</h2>
-        <p>${r.subtitulo} · Emitido em ${formatData(hojeISO())}</p>
-        <p>Centro de Educação Profissional de Santa Maria — Curso de Administração</p>
+        <div class="rel-logos">
+          <img src="icons/logo-gdf.png" alt="Brasão do Governo do Distrito Federal">
+          <img src="icons/logo-escola.png" alt="Logo do CEP Escola Técnica de Santa Maria">
+        </div>
+        <div>
+          <h2>${r.titulo}</h2>
+          <p>${r.subtitulo} · Emitido em ${formatData(hojeISO())}</p>
+          <p>${CREDITO}</p>
+        </div>
       </header>
       ${r.meses.map((m) => mesHtml(m, r.tipo)).join("")}
       ${resumoHtml(r.totais)}

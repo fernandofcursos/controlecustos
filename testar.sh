@@ -5,7 +5,7 @@ cd "$(dirname "$0")" || exit 1
 
 # Confere se a lista de arquivos do service worker (sw.js) está completa.
 faltando=""
-for f in index.html instalar.html manifest.webmanifest css/*.css js/*.js js/views/*.js vendor/* icons/*.png; do
+for f in index.html instalar.html manifest.webmanifest css/*.css js/*.js js/views/*.js vendor/* icons/*.png icons/*.jpg; do
   [ "$f" = "icons/qrcode.png" ] && continue
   grep -q "\"$f\"" sw.js || faltando="$faltando $f"
 done

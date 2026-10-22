@@ -1,4 +1,4 @@
-import { test, assert, assertDeepEqual } from "./runner.js";
+import { test, assert, assertEqual, assertDeepEqual } from "./runner.js";
 import { criarDocumentoInicial } from "../js/defaults.js";
 import { montarPlanilha } from "../js/excel.js";
 
@@ -25,4 +25,9 @@ test("aba Resumo traz totais do ano e categorias", () => {
   assert(res.some((l) => l[0] === "Lucro do Período" && l[1] === 700), "lucro");
   assert(res.some((l) => l[0] === "Margem de Lucro" && l[1] === 0.7), "margem");
   assert(res.some((l) => l[0] === "Aluguel" && l[1] === 300), "custo por categoria");
+});
+
+test("planilha traz o crédito institucional novo", () => {
+  const res = XLSX.utils.sheet_to_json(montarPlanilha(dComMarco, 2026).Sheets["Resumo"], { header: 1 });
+  assertEqual(res[1][0], "Gestão Empresarial · CEP Escola Técnica de Santa Maria");
 });

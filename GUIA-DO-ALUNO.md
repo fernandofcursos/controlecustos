@@ -145,4 +145,4 @@ Os valores aparecem no padrão brasileiro, por exemplo **R$ 12.345,67**.
 
 ---
 
-Centro de Educação Profissional de Santa Maria — Curso de Administração
+Gestão Empresarial · CEP Escola Técnica de Santa Maria
